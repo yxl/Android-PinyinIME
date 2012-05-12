@@ -104,7 +104,7 @@ public class PinyinDecoderService extends Service {
 
     static {
         try {
-            System.loadLibrary("jni_pinyinime");
+            System.loadLibrary("jni_name_yxl_pinyinime");
         } catch (UnsatisfiedLinkError ule) {
             Log.e("PinyinDecoderService",
                     "WARNING: Could not load jni_pinyinime natives");
