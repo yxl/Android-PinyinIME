@@ -15,7 +15,7 @@
  */
 
 #include <assert.h>
-#include <cutils/log.h>
+//#include <cutils/log.h>
 #include <jni.h>
 #include <string.h>
 #include <sys/types.h>
@@ -388,11 +388,11 @@ static int registerNativeMethods(JNIEnv* env, const char* className,
     }
 
     clazz = env->FindClass("java/io/FileDescriptor");
-    LOG_FATAL_IF(clazz == NULL, "Unable to find Java class java.io.FileDescriptor");
+    //LOG_FATAL_IF(clazz == NULL, "Unable to find Java class java.io.FileDescriptor");
     gFileDescriptorOffsets.mClass = (jclass) env->NewGlobalRef(clazz);
     gFileDescriptorOffsets.mDescriptor = env->GetFieldID(clazz, "descriptor", "I");
-    LOG_FATAL_IF(gFileDescriptorOffsets.mDescriptor == NULL,
-                 "Unable to find descriptor field in java.io.FileDescriptor");
+    //LOG_FATAL_IF(gFileDescriptorOffsets.mDescriptor == NULL,
+    //             "Unable to find descriptor field in java.io.FileDescriptor");
 
     return JNI_TRUE;
 }
