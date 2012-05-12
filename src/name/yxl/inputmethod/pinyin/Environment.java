@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.pinyin;
+package name.yxl.inputmethod.pinyin;
 
 import android.content.Context;
 import android.content.res.Configuration;

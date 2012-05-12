@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.pinyin;
+package name.yxl.inputmethod.pinyin;
 
-import com.android.inputmethod.pinyin.InputModeSwitcher.ToggleStates;
 
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
@@ -24,6 +23,8 @@ import android.view.KeyEvent;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import name.yxl.inputmethod.pinyin.InputModeSwitcher.ToggleStates;
 
 /**
  * Class used to represent a soft keyboard definition, including the height, the

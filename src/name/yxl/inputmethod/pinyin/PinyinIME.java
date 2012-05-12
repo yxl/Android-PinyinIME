@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.pinyin;
+package name.yxl.inputmethod.pinyin;
 
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
@@ -50,6 +50,9 @@ import android.widget.PopupWindow;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
+
+import name.yxl.inputmethod.pinyin.IPinyinDecoderService;
+import name.yxl.inputmethod.pinyin.R;
 
 /**
  * Main class of the Pinyin input method.
@@ -150,7 +153,7 @@ public class PinyinIME extends InputMethodService {
     /**
      * The current IME status.
      *
-     * @see com.android.inputmethod.pinyin.PinyinIME.ImeState
+     * @see name.yxl.inputmethod.pinyin.PinyinIME.ImeState
      */
     private ImeState mImeState = ImeState.STATE_IDLE;
 

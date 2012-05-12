@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.pinyin;
+package name.yxl.inputmethod.pinyin;
 
-import com.android.inputmethod.pinyin.IPinyinDecoderService;
+import name.yxl.inputmethod.pinyin.IPinyinDecoderService;
+import name.yxl.inputmethod.pinyin.R;
 
 import java.io.FileDescriptor;
 import java.io.FileNotFoundException;

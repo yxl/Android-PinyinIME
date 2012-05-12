@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.pinyin;
+package name.yxl.inputmethod.pinyin;
 
-import com.android.inputmethod.pinyin.SoftKeyboard.KeyRow;
 
 import java.util.List;
+
+import name.yxl.inputmethod.pinyin.SoftKeyboard.KeyRow;
 
 import android.content.Context;
 import android.graphics.Canvas;

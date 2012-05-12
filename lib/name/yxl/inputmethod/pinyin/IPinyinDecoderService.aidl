@@ -15,7 +15,7 @@
  */
 
 
-package com.android.inputmethod.pinyin;
+package name.yxl.inputmethod.pinyin;
 
 interface IPinyinDecoderService {
     int getInt();

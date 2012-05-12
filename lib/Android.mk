@@ -5,6 +5,6 @@ LOCAL_SRC_FILES := \
          $(call all-subdir-java-files) \
          com/android/inputmethod/pinyin/IPinyinDecoderService.aidl
 
-LOCAL_MODULE := com.android.inputmethod.pinyin.lib
+LOCAL_MODULE := name.yxl.inputmethod.pinyin.lib
 
 include $(BUILD_STATIC_JAVA_LIBRARY)
