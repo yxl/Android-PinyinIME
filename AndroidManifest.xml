@@ -13,10 +13,9 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.android.inputmethod.pinyin">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="name.yxl.inputmethod.pinyin">
 
-        <original-package android:name="com.android.inputmethod.pinyin" />
+        <original-package android:name="name.yxl.inputmethod.pinyin" />
 
         <uses-permission android:name="android.permission.VIBRATE"/>
         <uses-permission android:name="android.permission.INTERNET"/>
@@ -25,16 +24,17 @@
         <uses-permission android:name="android.permission.READ_CONTACTS"/>
 
         <application android:icon="@drawable/app_icon"
-          android:label="@string/ime_name">
+          android:label="@string/ime_name"
+          android:debuggable = "true">
             <service android:name=".PinyinDecoderService"
                 android:exported="true">
                 <intent-filter>
-                    <action android:name="com.android.inputmethod.pinyin.Decoder_Service" />
+                    <action android:name="name.yxl.inputmethod.pinyin.Decoder_Service" />
                     <category android:name="android.intent.category.DEFAULT" />
                 </intent-filter>
             </service>
 
-            <service android:name=".PinyinIME"
+            <service android:name="name.yxl.inputmethod.pinyin.PinyinIME"
                 android:label="@string/ime_name"
                     android:permission="android.permission.BIND_INPUT_METHOD">
                 <intent-filter>
@@ -43,7 +43,7 @@
                 <meta-data android:name="android.view.im" android:resource="@xml/method" />
             </service>
 
-            <activity android:name=".SettingsActivity"
+            <activity android:name="name.yxl.inputmethod.pinyin.SettingsActivity"
                 android:label="@string/ime_settings_activity_name">
                 <intent-filter>
                     <action android:name="android.intent.action.MAIN"/>

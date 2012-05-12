@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.pinyin;
+package name.yxl.inputmethod.pinyin;
 
 /**
  * Interface to notify the input method when the user clicks a candidate or

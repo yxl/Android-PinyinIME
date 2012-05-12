@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.pinyin;
+package name.yxl.inputmethod.pinyin;
 
-import com.android.inputmethod.pinyin.SoftKeyboard.KeyRow;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -25,6 +24,8 @@ import android.graphics.drawable.Drawable;
 
 import java.io.IOException;
 import java.util.regex.Pattern;
+
+import name.yxl.inputmethod.pinyin.SoftKeyboard.KeyRow;
 
 import org.xmlpull.v1.XmlPullParserException;
 
