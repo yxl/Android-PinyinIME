@@ -5,7 +5,7 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES := \
-	android/com_android_inputmethod_pinyin_PinyinDecoderService.cpp \
+	android/name_yxl_inputmethod_pinyin_PinyinDecoderService.cpp \
 	share/dictbuilder.cpp \
 	share/dictlist.cpp \
 	share/dicttrie.cpp \
