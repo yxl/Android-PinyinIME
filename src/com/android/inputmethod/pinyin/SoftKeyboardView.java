@@ -121,7 +121,7 @@ public class SoftKeyboardView extends View {
     public SoftKeyboardView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        mSoundManager = SoundManager.getInstance(mContext);
+        mSoundManager = SoundManager.getInstance(getContext());
 
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
