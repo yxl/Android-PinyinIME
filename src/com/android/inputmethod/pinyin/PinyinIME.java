@@ -1206,7 +1206,7 @@ public class PinyinIME extends InputMethodService {
         builder.setIcon(R.drawable.app_icon);
         builder.setNegativeButton(android.R.string.cancel, null);
         CharSequence itemSettings = getString(R.string.ime_settings_activity_name);
-        CharSequence itemInputMethod = getString(com.android.internal.R.string.inputMethod);
+        CharSequence itemInputMethod = getString(R.string.inputMethod);
         builder.setItems(new CharSequence[] {itemSettings, itemInputMethod},
                 new DialogInterface.OnClickListener() {
 
