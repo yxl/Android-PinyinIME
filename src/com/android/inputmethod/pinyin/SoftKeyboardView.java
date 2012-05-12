@@ -380,7 +380,8 @@ public class SoftKeyboardView extends View {
             return;
         }
         if (mVibrator == null) {
-            mVibrator = new Vibrator();
+            mVibrator =
+            	(Vibrator)getContext().getSystemService(Context.VIBRATOR_SERVICE);
         }
         mVibrator.vibrate(mVibratePattern, -1);
     }
