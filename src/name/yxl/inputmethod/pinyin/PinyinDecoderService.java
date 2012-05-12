@@ -151,7 +151,7 @@ public class PinyinDecoderService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        mUsr_dict_file = getFileStreamPath("usr_dict.dat").getPath();
+        mUsr_dict_file = getFileStreamPath("usr_dict.png").getPath();
         // This is a hack to make sure our "files" directory has been
         // created.
         try {
