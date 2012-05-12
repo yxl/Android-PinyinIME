@@ -3,7 +3,7 @@ include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES := \
          $(call all-subdir-java-files) \
-         com/android/inputmethod/pinyin/IPinyinDecoderService.aidl
+         name/yxl/inputmethod/pinyin/IPinyinDecoderService.aidl
 
 LOCAL_MODULE := name.yxl.inputmethod.pinyin.lib
 
