@@ -14,11 +14,13 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.pinyin;
+package name.yxl.inputmethod.pinyin;
 
-import com.android.inputmethod.pinyin.PinyinIME.DecodingInfo;
+import name.yxl.inputmethod.pinyin.R;
 
 import java.util.Vector;
+
+import name.yxl.inputmethod.pinyin.PinyinIME.DecodingInfo;
 
 import android.content.Context;
 import android.content.res.Configuration;

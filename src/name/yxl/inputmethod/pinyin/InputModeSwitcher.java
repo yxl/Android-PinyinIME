@@ -14,9 +14,11 @@
  * limitations under the License.
  */
 
-package com.android.inputmethod.pinyin;
+package name.yxl.inputmethod.pinyin;
 
-import com.android.inputmethod.pinyin.SoftKeyboard.KeyRow;
+import name.yxl.inputmethod.pinyin.SoftKeyboard.KeyRow;
+
+import name.yxl.inputmethod.pinyin.R;
 
 import android.content.res.Resources;
 import android.view.inputmethod.EditorInfo;
@@ -356,7 +358,7 @@ public class InputModeSwitcher {
 
         /**
          * The id of enabled row in the soft keyboard. Refer to
-         * {@link com.android.inputmethod.pinyin.SoftKeyboard.KeyRow} for
+         * {@link name.yxl.inputmethod.pinyin.SoftKeyboard.KeyRow} for
          * details.
          */
         public int mRowIdToEnable;
