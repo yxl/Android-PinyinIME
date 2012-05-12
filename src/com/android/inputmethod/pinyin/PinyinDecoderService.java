@@ -127,7 +127,7 @@ public class PinyinDecoderService extends Service {
         byte usr_dict[];
         usr_dict = new byte[MAX_PATH_FILE_LENGTH];
 
-        // Here is how we open a built-in dictionary for access through
+        // Here is how we open a built-in dictionary for access throughmPaddingLeft
         // a file descriptor...
         AssetFileDescriptor afd = getResources().openRawResourceFd(
                 R.raw.dict_pinyin);
