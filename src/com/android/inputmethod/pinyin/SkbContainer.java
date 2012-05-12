@@ -21,7 +21,7 @@ import android.content.res.Resources;
 import android.inputmethodservice.InputMethodService;
 import android.os.Handler;
 import android.os.SystemClock;
-import android.os.SystemProperties;
+//import android.os.SystemProperties;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.Gravity;
@@ -186,11 +186,11 @@ public class SkbContainer extends RelativeLayout implements OnTouchListener {
         mLongPressTimer = new LongPressTimer(this);
 
         // If it runs on an emulator, no bias correction
-        if ("1".equals(SystemProperties.get("ro.kernel.qemu"))) {
-            mYBiasCorrection = 0;
-        } else {
+//        if ("1".equals(SystemProperties.get("ro.kernel.qemu"))) {
+//            mYBiasCorrection = 0;
+//        } else {
             mYBiasCorrection = Y_BIAS_CORRECTION;
-        }
+//        }
         mBalloonPopup = new BalloonHint(context, this, MeasureSpec.AT_MOST);
         if (POPUPWINDOW_FOR_PRESSED_UI) {
             mBalloonOnKey = new BalloonHint(context, this, MeasureSpec.AT_MOST);
