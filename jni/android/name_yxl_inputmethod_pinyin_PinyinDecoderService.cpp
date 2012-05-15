@@ -121,10 +121,6 @@ JNIEXPORT void JNICALL nativeImResetSearch(JNIEnv* env, jclass jclazz) {
   return;
 }
 
-JNIEXPORT jint JNICALL nativeImAddLetter(JNIEnv *env, jclass clazz, jbyte ch) {
-  return im_add_letter(ch);
-}
-
 JNIEXPORT jstring JNICALL nativeImGetPyStr(JNIEnv* env, jclass jclazz,
                                            jboolean decoded) {
   size_t py_len;
@@ -198,13 +194,6 @@ JNIEXPORT jint JNICALL nativeImCancelLastChoice(JNIEnv *env, jclass clazz) {
 
 JNIEXPORT jint JNICALL nativeImGetFixedLen(JNIEnv *env, jclass clazz) {
   return im_get_fixed_len();
-}
-
-JNIEXPORT jboolean JNICALL nativeImCancelInput(JNIEnv *env, jclass clazz) {
-  if (im_cancel_input())
-    return JNI_TRUE;
-
-  return JNI_FALSE;
 }
 
 JNIEXPORT jboolean JNICALL nativeImFlushCache(JNIEnv *env, jclass clazz) {
@@ -324,8 +313,6 @@ static JNINativeMethod gMethods[] = {
             (void*) nativeImDelSearch },
     { "nativeImResetSearch",  "()V",
             (void*) nativeImResetSearch },
-    { "nativeImAddLetter", "(B)I",
-            (void*) nativeImAddLetter },
     { "nativeImGetPyStr", "(Z)Ljava/lang/String;",
             (void*) nativeImGetPyStr },
     { "nativeImGetPyStrLen", "(Z)I",
@@ -344,8 +331,6 @@ static JNINativeMethod gMethods[] = {
             (void*) nativeImGetPredictsNum },
     { "nativeImGetPredictItem", "(I)Ljava/lang/String;",
             (void*) nativeImGetPredictItem },
-    { "nativeImCancelInput", "()Z",
-            (void*) nativeImCancelInput },
     { "nativeImFlushCache", "()Z",
             (void*) nativeImFlushCache },
     /* <<----Functions for Pinyin-to-hanzi decoding end------------- */
