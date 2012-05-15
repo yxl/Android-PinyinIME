@@ -101,11 +101,6 @@ extern "C" {
     matrix_search->reset_search();
   }
 
-  // To be removed
-  size_t im_add_letter(char ch) {
-    return 0;
-  }
-
   const char* im_get_sps_str(size_t *decoded_len) {
     if (NULL == matrix_search)
       return NULL;
@@ -148,12 +143,6 @@ extern "C" {
 
     return matrix_search->get_fixedlen();
   }
-
-  // To be removed
-  bool im_cancel_input() {
-    return true;
-  }
-
 
   size_t im_get_predicts(const char16 *his_buf,
                          char16 (*&pre_buf)[kMaxPredictSize + 1]) {

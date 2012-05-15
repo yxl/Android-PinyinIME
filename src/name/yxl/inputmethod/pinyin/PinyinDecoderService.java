@@ -54,8 +54,6 @@ public class PinyinDecoderService extends Service {
 
     native static void nativeImResetSearch();
 
-    native static int nativeImAddLetter(byte ch);
-
     native static String nativeImGetPyStr(boolean decoded);
 
     native static int nativeImGetPyStrLen(boolean decoded);
@@ -69,8 +67,6 @@ public class PinyinDecoderService extends Service {
     native static int nativeImCancelLastChoice();
 
     native static int nativeImGetFixedLen();
-
-    native static boolean nativeImCancelInput();
 
     native static boolean nativeImFlushCache();
 
@@ -193,10 +189,6 @@ public class PinyinDecoderService extends Service {
             nativeImResetSearch();
         }
 
-        public int imAddLetter(byte ch) {
-            return nativeImAddLetter(ch);
-        }
-
         public String imGetPyStr(boolean decoded) {
             return nativeImGetPyStr(decoded);
         }
@@ -245,10 +237,6 @@ public class PinyinDecoderService extends Service {
 
         public int imGetFixedLen() {
             return nativeImGetFixedLen();
-        }
-
-        public boolean imCancelInput() {
-            return nativeImCancelInput();
         }
 
         public void imFlushCache() {
