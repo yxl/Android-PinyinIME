@@ -80,8 +80,7 @@ extern "C" {
    * string has the same prefix with the previous one stored in the decoder,
    * the decoder will only continue the search from the end of the prefix.
    * If the caller needs to do a brand new search, please call im_reset_search()
-   * first. Calling im_search() is equivalent to calling im_add_letter() one by
-   * one.
+   * first.
    *
    * @param sps_buf The spelling string buffer to decode.
    * @param sps_len The length of the spelling string buffer.
@@ -106,16 +105,6 @@ extern "C" {
    * Reset the previous search result.
    */
   void im_reset_search();
-
-  /**
-   * Add a Pinyin letter to the current spelling string kept by decoder. If the
-   * decoder fails in adding the letter, it will do nothing. im_get_sps_str()
-   * can be used to get the spelling string kept by decoder currently.
-   *
-   * @param ch The letter to add.
-   * @return The number of candidates.
-   */
-  size_t im_add_letter(char ch);
 
   /**
    * Get the spelling string kept by the decoder.
@@ -175,11 +164,6 @@ extern "C" {
    * @return The number of fixed spelling ids, of Chinese characters.
    */
   size_t im_get_fixed_len();
-
-  /**
-   * Cancel the input state and reset the search workspace.
-   */
-  bool im_cancel_input();
 
   /**
    * Get prediction candiates based on the given fixed Chinese string as the

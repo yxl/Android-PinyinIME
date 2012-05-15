@@ -23,7 +23,6 @@ interface IPinyinDecoderService {
     int imSearch(in byte[] pyBuf, int pyLen);
     int imDelSearch(int pos, boolean is_pos_in_splid, boolean clear_fixed_this_step);
     void imResetSearch();
-    int imAddLetter(byte ch);
     String imGetPyStr(boolean decoded);
     int imGetPyStrLen(boolean decoded);
     int[] imGetSplStart();
@@ -33,7 +32,6 @@ interface IPinyinDecoderService {
     int imChoose(int choiceId);
     int imCancelLastChoice();
     int imGetFixedLen();
-    boolean imCancelInput();
     void imFlushCache();
     int imGetPredictsNum(in String fixedStr);
     List<String> imGetPredictList(int predictsStart, int predictsNum);
