@@ -169,13 +169,13 @@ class AtomDictBase {
    * Function used for prediction.
    * No need to sort the newly added items.
    *
-   * @param last_hzs The last n Chinese chracters(called Hanzi), its length
+   * @param last_hzs The last n Chinese characters(called Hanzi), its length
    * should be less than or equal to kMaxPredictSize.
    * @param hzs_len specifies the length(<= kMaxPredictSize) of the history.
    * @param npre_items Used used to return the result.
    * @param npre_max The length of the buffer to return result
    * @param b4_used Number of prediction result (from npre_items[-b4_used])
-   * from other atom dictionaries. A atom ditionary can just ignore it.
+   * from other atom dictionaries. An atom dictionary can just ignore it.
    * @return The number of prediction result from this atom dictionary.
    */
   virtual size_t predict(const char16 last_hzs[], uint16 hzs_len,
