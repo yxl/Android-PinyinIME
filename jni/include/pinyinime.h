@@ -92,7 +92,7 @@ extern "C" {
    * Make a delete operation in the current search result, and make research if
    * necessary.
    *
-   * @param pos The posistion of char in spelling string to delete, or the
+   * @param pos The position of char in spelling string to delete, or the
    * position of spelling id in result string to delete.
    * @param is_pos_in_splid Indicate whether the pos parameter is the position
    * in the spelling string, or the position in the result spelling id string.

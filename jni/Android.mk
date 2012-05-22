@@ -24,7 +24,7 @@ LOCAL_SRC_FILES := \
 	share/sync.cpp
 
 LOCAL_C_INCLUDES += $(JNI_H_INCLUDE)
-#LOCAL_LDLIBS += -lpthread
+LOCAL_LDLIBS += -llog
 LOCAL_MODULE := libjni_name_yxl_pinyinime
 #LOCAL_SHARED_LIBRARIES := libcutils libutils
 LOCAL_MODULE_TAGS := optional
