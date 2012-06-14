@@ -30,10 +30,10 @@ class SpellingParser {
   SpellingParser();
 
   // Given a string, parse it into a spelling id stream.
-  // If the whole string are sucessfully parsed, last_is_pre will be true;
-  // if the whole string is not fullly parsed, last_is_pre will return whether
+  // If the whole string are successfully parsed, last_is_pre will be true;
+  // if the whole string is not fully parsed, last_is_pre will return whether
   // the last part of the string is a prefix of a full spelling string. For
-  // example, given string "zhengzhon", "zhon" is not a valid speling, but it is
+  // example, given string "zhengzhon", "zhon" is not a valid spelling, but it is
   // the prefix of "zhong".
   //
   // If splstr starts with a character not in ['a'-z'] (it is a split char),
