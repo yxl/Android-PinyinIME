@@ -101,17 +101,17 @@ class DictBuilder {
                   DictTrie *dict_trie);
 
  private:
-  // Fill in the buffer with id. The caller guarantees that the paramters are
-  // vaild.
+  // Fill in the buffer with id. The caller guarantees that the parameters are
+  // valid.
   void id_to_charbuf(unsigned char *buf, LemmaIdType id);
 
   // Update the offset of sons for a node.
   void set_son_offset(LmaNodeGE1 *node, size_t offset);
 
-  // Update the offset of homophonies' ids for a node.
+  // Update the offset of homophones' ids for a node.
   void set_homo_id_buf_offset(LmaNodeGE1 *node, size_t offset);
 
-  // Format a speling string.
+  // Format a spelling string.
   void format_spelling_str(char *spl_str);
 
   // Sort the lemma_arr by the hanzi string, and give each of unique items
