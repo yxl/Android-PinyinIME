@@ -227,7 +227,7 @@ class MatrixSearch {
 
   // The starting positions and spelling ids for the first full sentence
   // candidate.
-  size_t spl_id_num_;                // Number of splling ids
+  size_t spl_id_num_;                // Number of spelling ids
   uint16 spl_start_[kMaxRowNum];     // Starting positions
   uint16 spl_id_[kMaxRowNum];        // Spelling ids
   // Used to remember the last fixed position, counted in Hanzi.
@@ -276,7 +276,7 @@ class MatrixSearch {
   // the fixed lemmas.
   void merge_fixed_lmas(size_t del_spl_pos);
 
-  // Get spelling start posistions and ids. The result will be stored in
+  // Get spelling start positions and ids. The result will be stored in
   // spl_id_num_, spl_start_[], spl_id_[].
   // fixed_hzs_ will be also assigned.
   void get_spl_start_id();

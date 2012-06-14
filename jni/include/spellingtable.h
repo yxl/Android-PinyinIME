@@ -78,14 +78,14 @@ class SpellingTable {
   bool init_table(size_t pure_spl_size, size_t spl_max_num, bool need_score);
 
   // Put a spelling string to the table.
-  // It always returns false if called after arrange() withtout a new
+  // It always returns false if called after arrange() without a new
   // init_table() operation.
-  // freq is the spelling's occuring count.
-  // If the spelling has been in the table, occuring count will accumulated.
-  bool put_spelling(const char* spelling_str, double spl_count);
+  // freq is the spelling's occurring count.
+  // If the spelling has been in the table, occurring count will accumulated.
+  bool put_spelling(const char* spelling_str, double freq);
 
   // Test whether a spelling string is in the table.
-  // It always returns false, when being called after arrange() withtout a new
+  // It always returns false, when being called after arrange() without a new
   // init_table() operation.
   bool contain(const char* spelling_str);
 
