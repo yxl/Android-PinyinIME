@@ -20,7 +20,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-//#include <cutils/log.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/stat.h>
@@ -29,7 +28,6 @@
 #include <sys/types.h>
 #include <sys/time.h>
 #include <time.h>
-#include <pthread.h>
 #include <math.h>
 
 namespace ime_pinyin {
@@ -56,7 +54,7 @@ static struct timeval _tv_start_, _tv_end_;
 #endif
 
 // XXX File load and write are thread-safe by g_mutex_
-static pthread_mutex_t g_mutex_ = PTHREAD_MUTEX_INITIALIZER;
+//static pthread_mutex_t g_mutex_ = PTHREAD_MUTEX_INITIALIZER;
 static struct timeval g_last_update_ = {0, 0};
 
 inline uint32 UserDict::get_dict_file_size(UserDictInfo * info) {
@@ -292,14 +290,14 @@ bool UserDict::close_dict() {
   // we can not simply write back here
   // To do a safe flush, we have to discard all newly added
   // lemmas and try to reload dict file.
-  pthread_mutex_lock(&g_mutex_);
+//  pthread_mutex_lock(&g_mutex_);
   if (load_time_.tv_sec > g_last_update_.tv_sec ||
     (load_time_.tv_sec == g_last_update_.tv_sec &&
      load_time_.tv_usec > g_last_update_.tv_usec)) {
     write_back();
     gettimeofday(&g_last_update_, NULL);
   }
-  pthread_mutex_unlock(&g_mutex_);
+//  pthread_mutex_unlock(&g_mutex_);
 
  out:
   free((void*)dict_file_);
@@ -513,16 +511,16 @@ size_t UserDict::_get_lpis(const uint16 *splid_str,
   if (lpi_max <= 0)
     return 0;
 
-  if (0 == pthread_mutex_trylock(&g_mutex_)) {
+//  if (0 == pthread_mutex_trylock(&g_mutex_)) {
     if (load_time_.tv_sec < g_last_update_.tv_sec ||
       (load_time_.tv_sec == g_last_update_.tv_sec &&
        load_time_.tv_usec < g_last_update_.tv_usec)) {
       // Others updated disk file, have to reload
-      pthread_mutex_unlock(&g_mutex_);
+//      pthread_mutex_unlock(&g_mutex_);
       flush_cache();
-    } else {
-      pthread_mutex_unlock(&g_mutex_);
-    }
+//    } else {
+//      pthread_mutex_unlock(&g_mutex_);
+//    }
   } else {
   }
 
@@ -1083,14 +1081,14 @@ bool UserDict::validate(const char *file) {
 }
 
 bool UserDict::load(const char *file, LemmaIdType start_id) {
-  if (0 != pthread_mutex_trylock(&g_mutex_)) {
-    return false;
-  }
+//  if (0 != pthread_mutex_trylock(&g_mutex_)) {
+//    return false;
+//  }
   // b is ignored in POSIX compatible os including Linux
   // while b is important flag for Windows to specify binary mode
   FILE *fp = fopen(file, "rb");
   if (!fp) {
-    pthread_mutex_unlock(&g_mutex_);
+//    pthread_mutex_unlock(&g_mutex_);
     return false;
   }
 
@@ -1214,7 +1212,7 @@ bool UserDict::load(const char *file, LemmaIdType start_id) {
 
   fclose(fp);
 
-  pthread_mutex_unlock(&g_mutex_);
+//  pthread_mutex_unlock(&g_mutex_);
   return true;
 
  error:
@@ -1230,7 +1228,7 @@ bool UserDict::load(const char *file, LemmaIdType start_id) {
   if (predicts) free(predicts);
 #endif
   fclose(fp);
-  pthread_mutex_unlock(&g_mutex_);
+//  pthread_mutex_unlock(&g_mutex_);
   return false;
 }
 
@@ -1925,10 +1923,10 @@ bool UserDict::state(UserDictStat * stat) {
   stat->file_name = dict_file_;
   stat->load_time.tv_sec = load_time_.tv_sec;
   stat->load_time.tv_usec = load_time_.tv_usec;
-  pthread_mutex_lock(&g_mutex_);
+//  pthread_mutex_lock(&g_mutex_);
   stat->last_update.tv_sec = g_last_update_.tv_sec;
   stat->last_update.tv_usec = g_last_update_.tv_usec;
-  pthread_mutex_unlock(&g_mutex_);
+//  pthread_mutex_unlock(&g_mutex_);
   stat->disk_size = get_dict_file_size(&dict_info_);
   stat->lemma_count = dict_info_.lemma_count;
   stat->lemma_size = dict_info_.lemma_size;

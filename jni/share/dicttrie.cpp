@@ -436,8 +436,8 @@ MileStoneHandle DictTrie::extend_dict0(MileStoneHandle from_handle,
       break;
   }
 
-  //  printf("----- parsing marks: %d, mile stone: %d \n", parsing_marks_pos_,
-  //      mile_stones_pos_);
+  printf("----- parsing marks: %d, mile stone: %d \n", parsing_marks_pos_,
+      mile_stones_pos_);
   return ret_handle;
 }
 
@@ -513,8 +513,8 @@ MileStoneHandle DictTrie::extend_dict1(MileStoneHandle from_handle,
     ret_val = 1;
   }
 
-  //  printf("----- parsing marks: %d, mile stone: %d \n", parsing_marks_pos_,
-  //         mile_stones_pos_);
+   printf("----- parsing marks: %d, mile stone: %d \n", parsing_marks_pos_,
+      mile_stones_pos_);
   return ret_handle;
 }
 
@@ -590,8 +590,8 @@ MileStoneHandle DictTrie::extend_dict2(MileStoneHandle from_handle,
     mile_stones_pos_++;
   }
 
-  // printf("----- parsing marks: %d, mile stone: %d \n", parsing_marks_pos_,
-  //        mile_stones_pos_);
+  printf("----- parsing marks: %d, mile stone: %d \n", parsing_marks_pos_,
+      mile_stones_pos_);
   return ret_handle;
 }
 

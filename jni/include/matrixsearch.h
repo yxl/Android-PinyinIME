@@ -258,7 +258,7 @@ class MatrixSearch {
   // result of "a". If the given position is out of range, return false.
   // if clear_fixed_this_step is true, and the ch_pos step is a fixed step,
   // clear its fixed status. if clear_dmi_his_step is true, clear the DMI nodes.
-  // If clear_mtrx_this_sTep is true, clear the mtrx nodes of this step.
+  // If clear_mtrx_this_step is true, clear the mtrx nodes of this step.
   // The DMI nodes will be kept.
   //
   // Note: this function should not destroy content of pys_.
@@ -371,6 +371,14 @@ class MatrixSearch {
 
   void debug_print_dmi(PoolPosType dmi_pos, uint16 nest_level);
 
+  void debug_print_mtrx_nd_pool() {
+    for (int i = 0; i < mtrx_nd_pool_used_; i++)
+    {
+      const MatrixNode *mtrx_nd = mtrx_nd_pool_ + i;
+      printf("{id:%ld,score:%f,step:%d,dmi_fr:%d}\n", mtrx_nd->id, mtrx_nd->score,
+          mtrx_nd->step, mtrx_nd->dmi_fr);
+    }
+  }
  public:
   MatrixSearch();
   ~MatrixSearch();
