@@ -37,7 +37,7 @@ MatrixSearch::MatrixSearch() {
   pys_decoded_len_ = 0;
   mtrx_nd_pool_used_ = 0;
   dmi_pool_used_ = 0;
-  xi_an_enabled_ = false;
+  xi_an_enabled_ = true;
   dmi_c_phrase_ = false;
 
   assert(kMaxSearchSteps > 0);
@@ -1177,7 +1177,7 @@ void MatrixSearch::prepare_candidates() {
   if (kPrintDebug0) {
     printf("-----Prepare candidates, score:\n");
     for (size_t a = 0; a < lpi_total_; a++) {
-      printf("[%03d]%d    ", a, lpi_items_[a].psb);
+      printf("%d[%03d]%d    ",lpi_items_[a].id, a, lpi_items_[a].psb);
       if ((a + 1) % 6 == 0) printf("\n");
     }
     printf("\n");
@@ -1398,6 +1398,16 @@ size_t MatrixSearch::get_spl_start(const uint16 *&spl_start) {
 }
 
 size_t MatrixSearch::extend_dmi(DictExtPara *dep, DictMatchInfo *dmi_s) {
+  if (kPrintDebug0) {
+    printf("extend_dmi\n");
+    if (dmi_s != NULL) {
+      printf("---%d\n", dmi_s->dict_level);
+      printf(" MileStone: %x, %x\n", dmi_s->dict_handles[0],
+          dmi_s->dict_handles[1]);
+      printf(" Spelling : %d\n", dmi_s->spl_id);
+      printf(" Total Pinyin Len: %d\n", dmi_s->splstr_len);
+    }
+
   if (dmi_pool_used_ >= kDmiPoolSize) return 0;
 
   if (dmi_c_phrase_)
