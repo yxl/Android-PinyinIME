@@ -23,7 +23,7 @@
 namespace ime_pinyin {
 
 // Enable the following line when building the binary dictionary model.
-// #define ___BUILD_MODEL___
+#define ___BUILD_MODEL___
 
 typedef unsigned char      uint8;
 typedef unsigned short     uint16;
@@ -35,9 +35,9 @@ typedef int                int32;
 typedef long long          int64;
 typedef unsigned long long uint64;
 
-const bool kPrintDebug0 = false;
-const bool kPrintDebug1 = false;
-const bool kPrintDebug2 = false;
+const bool kPrintDebug0 = true;
+const bool kPrintDebug1 = true;
+const bool kPrintDebug2 = true;
 
 // The max length of a lemma.
 const size_t kMaxLemmaSize = 8;
