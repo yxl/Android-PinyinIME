@@ -24,8 +24,8 @@
 // Debug performance for operations
 // #define ___DEBUG_PERF___
 
-#include <pthread.h>
 #include "atomdictbase.h"
+#include <sys/time.h>
 
 namespace ime_pinyin {
 

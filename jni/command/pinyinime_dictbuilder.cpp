@@ -24,8 +24,7 @@
 using namespace ime_pinyin;
 
 /**
- * Build binary dictionary model. Make sure that ___BUILD_MODEL___ is defined
- * in dictdef.h.
+ * Build binary dictionary model.
  */
 int main(int argc, char* argv[]) {
   DictTrie* dict_trie = new DictTrie();

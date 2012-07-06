@@ -1,7 +1,7 @@
 CPP=g++
-CPPFLAGS= -g3 -m32 -Wall -D ___BUILD_MODEL___
+CPPFLAGS= -g3 -Wall -m32
 
-PINYINIME_DICTBUILDER=pinyinime_dictbuilder
+TARGET=test_pinyin
 
 LIBRARY_SRC= \
 	    ../share/dictbuilder.cpp \
@@ -16,17 +16,22 @@ LIBRARY_SRC= \
 	    ../share/splparser.cpp \
 	    ../share/utf16char.cpp \
 	    ../share/utf16reader.cpp \
+        ../share/matrixsearch.cpp \
+        ../share/pinyinime.cpp \
+        ../share/userdict.cpp \
+        ConvertUTF.cpp \
+        test.cpp
 
-all: engine
-	./$(PINYINIME_DICTBUILDER)
+all: $(TARGET) test
 
-engine: $(PINYINIME_DICTBUILDER)
+test: $(TARGET)
+	$(TARGET)
 
-$(PINYINIME_DICTBUILDER): $(LIBRARY_SRC) pinyinime_dictbuilder.cpp
+$(TARGET): $(LIBRARY_SRC)
 	@$(CPP) $(CPPFLAGS) -o $@ $?
 
 
 clean:
-	-rm -rf $(PINYINIME_DICTBUILDER)
+	-rm -rf $(TARGET) user.dic
 
 .PHONY: clean

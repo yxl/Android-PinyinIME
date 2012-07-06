@@ -37,7 +37,7 @@ MatrixSearch::MatrixSearch() {
   pys_decoded_len_ = 0;
   mtrx_nd_pool_used_ = 0;
   dmi_pool_used_ = 0;
-  xi_an_enabled_ = false;
+  xi_an_enabled_ = true;
   dmi_c_phrase_ = false;
 
   assert(kMaxSearchSteps > 0);

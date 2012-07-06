@@ -258,7 +258,7 @@ class MatrixSearch {
   // result of "a". If the given position is out of range, return false.
   // if clear_fixed_this_step is true, and the ch_pos step is a fixed step,
   // clear its fixed status. if clear_dmi_his_step is true, clear the DMI nodes.
-  // If clear_mtrx_this_sTep is true, clear the mtrx nodes of this step.
+  // If clear_mtrx_this_step is true, clear the mtrx nodes of this step.
   // The DMI nodes will be kept.
   //
   // Note: this function should not destroy content of pys_.
