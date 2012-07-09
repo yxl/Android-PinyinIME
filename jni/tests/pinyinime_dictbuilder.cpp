@@ -43,6 +43,7 @@ void testMatrixSearch(const char* py)
 {
   MatrixSearch ms;
   ms.init("../../res/raw/dict_pinyin.png", "user.dic");
+  for (int i=0; i<10; i++) {
   ms.reset_search();
   ms.search(py, strlen(py));
 
@@ -62,7 +63,8 @@ void testMatrixSearch(const char* py)
     ms.get_candidate(i, buffer, 64);
     printf("%s ", toUTF8(buffer, 64));
   }
-  printf("\n%d candidate(s) for %s\n", n, py);
+  printf("\n%ld candidate(s) for %s\n", n, py);
+  }
 }
 
 /**
@@ -71,7 +73,7 @@ void testMatrixSearch(const char* py)
  */
 int main(int argc, char* argv[])
 {
-  char py[256] = "bei";
+  char py[256] = "nia";
   if (argc > 1)
   {
     strncpy(py, argv[1], 256);
