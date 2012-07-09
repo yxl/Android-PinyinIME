@@ -1177,14 +1177,14 @@ void MatrixSearch::prepare_candidates() {
   if (kPrintDebug0) {
     printf("-----Prepare candidates, score:\n");
     for (size_t a = 0; a < lpi_total_; a++) {
-      printf("%d[%03d]%d    ",lpi_items_[a].id, a, lpi_items_[a].psb);
+      printf("%ld[%03ld]%d    ",lpi_items_[a].id, a, lpi_items_[a].psb);
       if ((a + 1) % 6 == 0) printf("\n");
     }
     printf("\n");
   }
 
   if (kPrintDebug0) {
-    printf("--- lpi_total_ = %d\n", lpi_total_);
+    printf("--- lpi_total_ = %ld\n", lpi_total_);
   }
 }
 
@@ -1407,6 +1407,7 @@ size_t MatrixSearch::extend_dmi(DictExtPara *dep, DictMatchInfo *dmi_s) {
       printf(" Spelling : %d\n", dmi_s->spl_id);
       printf(" Total Pinyin Len: %d\n", dmi_s->splstr_len);
     }
+  }
 
   if (dmi_pool_used_ >= kDmiPoolSize) return 0;
 
@@ -1423,7 +1424,6 @@ size_t MatrixSearch::extend_dmi(DictExtPara *dep, DictMatchInfo *dmi_s) {
   // 1. If this is a half Id, get its corresponding full starting Id and
   // number of full Id.
   size_t ret_val = 0;
-  PoolPosType mtrx_dmi_fr = (PoolPosType)-1;  // From which dmi node
 
   lpi_total_ = 0;
 
@@ -1447,11 +1447,6 @@ size_t MatrixSearch::extend_dmi(DictExtPara *dep, DictMatchInfo *dmi_s) {
   if (handles[0] > 0)
     lpi_total_ = lpi_num;
 
-  if (NULL == dmi_s) {  // from root
-    assert(0 != handles[0]);
-    mtrx_dmi_fr = dmi_pool_used_;
-  }
-
   // 3. Begin extending in the user dictionary
   if (NULL != user_dict_ && (from_h[1] > 0 || NULL == dmi_s)) {
     handles[1] = user_dict_->extend_dict(from_h[1], dep,
@@ -1461,7 +1456,7 @@ size_t MatrixSearch::extend_dmi(DictExtPara *dep, DictMatchInfo *dmi_s) {
     if (handles[1] > 0) {
       if (kPrintDebug0) {
         for (size_t t = 0; t < lpi_num; t++) {
-          printf("--Extend in user dict: uid:%d uscore:%d\n", lpi_items_[lpi_total_ + t].id,
+          printf("--Extend in user dict: uid:%ld uscore:%d\n", lpi_items_[lpi_total_ + t].id,
                  lpi_items_[lpi_total_ + t].psb);
         }
       }
@@ -1494,7 +1489,7 @@ size_t MatrixSearch::extend_dmi(DictExtPara *dep, DictMatchInfo *dmi_s) {
       return ret_val;
 
     if (kPrintDebug0) {
-      printf("--- lpi_total_ = %d\n", lpi_total_);
+      printf("--- lpi_total_ = %ld\n", lpi_total_);
     }
 
     myqsort(lpi_items_, lpi_total_, sizeof(LmaPsbItem), cmp_lpi_with_psb);
@@ -1578,6 +1573,7 @@ size_t MatrixSearch::extend_mtrx_nd(MatrixNode *mtrx_nd, LmaPsbItem lpi_items[],
     if (replace || (mtrx_nd_num < kMaxNodeARow &&
         matrix_[res_row].mtrx_nd_pos + mtrx_nd_num < kMtrxNdPoolSize)) {
       mtrx_nd_res->id = lpi_items[pos].id;
+      printf("1576: %ld\n", mtrx_nd_res->id);
       mtrx_nd_res->score = score;
       mtrx_nd_res->from = mtrx_nd;
       mtrx_nd_res->dmi_fr = dmi_fr;
@@ -1643,7 +1639,7 @@ char16* MatrixSearch::get_candidate0(char16 *cand_str, size_t max_len,
     id_num++;
 
     if (kPrintDebug1) {
-       printf("---MatrixNode [step: %d, lma_idx: %d, total score:%.5f]\n",
+       printf("---MatrixNode [step: %d, lma_idx: %ld, total score:%.5f]\n",
               mtrx_nd->step, mtrx_nd->id, mtrx_nd->score);
        debug_print_dmi(mtrx_nd->dmi_fr, 1);
     }
