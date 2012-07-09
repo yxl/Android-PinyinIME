@@ -1413,7 +1413,6 @@ size_t MatrixSearch::extend_dmi(DictExtPara *dep, DictMatchInfo *dmi_s) {
   // 1. If this is a half Id, get its corresponding full starting Id and
   // number of full Id.
   size_t ret_val = 0;
-  PoolPosType mtrx_dmi_fr = (PoolPosType)-1;  // From which dmi node
 
   lpi_total_ = 0;
 
@@ -1436,11 +1435,6 @@ size_t MatrixSearch::extend_dmi(DictExtPara *dep, DictMatchInfo *dmi_s) {
   }
   if (handles[0] > 0)
     lpi_total_ = lpi_num;
-
-  if (NULL == dmi_s) {  // from root
-    assert(0 != handles[0]);
-    mtrx_dmi_fr = dmi_pool_used_;
-  }
 
   // 3. Begin extending in the user dictionary
   if (NULL != user_dict_ && (from_h[1] > 0 || NULL == dmi_s)) {

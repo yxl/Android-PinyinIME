@@ -64,7 +64,7 @@ void testMatrixSearch(const char* py)
  */
 int main(int argc, char* argv[])
 {
-  char py[256] = "bei";
+  char py[256] = "nia";
   if (argc > 1)
   {
     strncpy(py, argv[1], 256);

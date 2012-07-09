@@ -444,7 +444,6 @@ int32 UserDict::locate_first_in_offsets(const UserDictSearchable * searchable) {
   int32 middle = -1;
 
   int32 first_prefix = middle;
-  int32 last_matched = middle;
 
   while (begin <= end) {
     middle = (begin + end) >> 1;
@@ -463,7 +462,6 @@ int32 UserDict::locate_first_in_offsets(const UserDictSearchable * searchable) {
       end = middle - 1;
     } else {
       end = middle - 1;
-      last_matched = middle;
     }
   }
 
@@ -1825,10 +1823,8 @@ int UserDict::get_sync_lemmas_in_utf16le_string_from_beginning(
     uint16 *wrd = get_lemma_word(offset);
     int score = _get_lemma_score(wrd, spl, nchar);
 
-    static char score_temp[32], *pscore_temp = score_temp;
     static char16 temp[256], *ptemp = temp;
 
-    pscore_temp = score_temp;
     ptemp = temp;
 
     uint32 j;
