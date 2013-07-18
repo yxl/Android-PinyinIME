@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <p>PinyinIME test</p>
+    <span id="status"></span>
+    <br/>
+    <span id="log"></span>
+
+    <script type="text/javascript">
+    window.addEventListener('load', function() {
+      var head = document.getElementsByTagName('head')[0];
+      var settings = {
+        path: '.'
+      };
+
+      // chewing_files.js and chewing_init.js must be loaded before libchewing.js. 
+      chewing_files = document.createElement('script');
+      chewing_files.src = settings.path + '/empinyin_files.js';
+      head.appendChild(chewing_files);
+
+      chewing_files = document.createElement('script');
+      chewing_files.src = settings.path + '/jspinyin_init.js';
+      head.appendChild(chewing_files);
+
+      chewing_files = document.createElement('script');
+      chewing_files.src = settings.path + '/libpinyin.js';
+      head.appendChild(chewing_files);
+    });
+    </script>
+</body>
+</html>
+
