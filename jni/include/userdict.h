@@ -25,6 +25,7 @@
 // #define ___DEBUG_PERF___
 
 #include <pthread.h>
+#include <sys/time.h>
 #include "atomdictbase.h"
 
 namespace ime_pinyin {
