@@ -5,7 +5,7 @@
  *      Author: yuan
  */
 
-#include "ConvertUTF.h"
+#include "../include/ConvertUTF.h"
 
 
 
@@ -51,7 +51,6 @@
 ------------------------------------------------------------------------ */
 
 
-#include "ConvertUTF.h"
 #ifdef CVTUTF_DEBUG
 #include <stdio.h>
 #endif

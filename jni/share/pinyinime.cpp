@@ -19,10 +19,13 @@
 #include "../include/dicttrie.h"
 #include "../include/matrixsearch.h"
 #include "../include/spellingtrie.h"
+#include "../include/ConvertUTF.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+  static UTF8 g_utf8_buf[1024] = { 0 };
 
   using namespace ime_pinyin;
 
@@ -114,6 +117,24 @@ extern "C" {
       return NULL;
 
     return matrix_search->get_candidate(cand_id, cand_str, max_len);
+  }
+
+  const char* toUTF8(const char16* src, size_t length) {
+    UTF16 *utf16Start = (UTF16 *) src;
+    UTF16 *utf16End = (UTF16 *) (src + length);
+    UTF8* utf8Start = g_utf8_buf;
+    ConvertUTF16toUTF8((const UTF16 **) &utf16Start, utf16End, &utf8Start,
+        &(g_utf8_buf[1024]), strictConversion);
+    return (const char*) g_utf8_buf;
+  }
+
+  const char* im_get_candidate_char(size_t cand_id) {
+    if (NULL == matrix_search)
+      return NULL;
+
+    char16 buffer[64];
+    char16* cand = matrix_search->get_candidate(cand_id, buffer, 64);
+    return toUTF8(buffer, 64);
   }
 
   size_t im_get_spl_start_pos(const uint16 *&spl_start) {

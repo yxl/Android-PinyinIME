@@ -21,7 +21,7 @@ LIBRARY_SRC= \
         ../share/matrixsearch.cpp \
         ../share/pinyinime.cpp \
         ../share/userdict.cpp \
-        ConvertUTF.cpp \
+        ../share/ConvertUTF.cpp \
 
 all: engine
 
