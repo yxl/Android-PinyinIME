@@ -39,11 +39,21 @@
       log('Failed to open data/dict.data!');
     }
 
-    document.getElementById('start').onclick = function() {
+    document.getElementById('test_nia').onclick = function() {
+      test('nia');
+    };
+
+    document.getElementById('test_aig').onclick = function() {
+      test('aig');
+    };
+
+    document.getElementById('test_qua').onclick = function() {
+      test('qua');
+    };
+
+    function test(keyword) {
       try {
         im_reset_search();
-
-        var keyword = 'nia';
 
         log('search keyword ' + keyword);
         var startTime = new Date().getTime();
