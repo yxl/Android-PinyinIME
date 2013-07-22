@@ -497,7 +497,8 @@ size_t DictBuilder::read_raw_dict(const char* fn_raw,
   delete [] valid_hzs;
   utf16_reader.close();
 
-  printf("read succesfully, lemma num: %ld\n", lemma_num);
+  if (kPrintDebug0)
+    printf("read succesfully, lemma num: %ld\n", lemma_num);
 
   return lemma_num;
 }
@@ -534,7 +535,8 @@ bool DictBuilder::build_dict(const char *fn_raw,
     return false;
   }
 
-  printf("spelling tree construct successfully.\n");
+  if (kPrintDebug0)
+    printf("spelling tree construct successfully.\n");
 
   // Convert the spelling string to idxs
   for (size_t i = 0; i < lemma_num_; i++) {
@@ -592,7 +594,8 @@ bool DictBuilder::build_dict(const char *fn_raw,
   }
 
 #ifdef ___DO_STATISTICS___
-  stat_print();
+  if (kPrintDebug0)
+    stat_print();
 #endif
 
   // Move the node data and homo data to the DictTrie

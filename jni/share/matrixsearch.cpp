@@ -1573,7 +1573,10 @@ size_t MatrixSearch::extend_mtrx_nd(MatrixNode *mtrx_nd, LmaPsbItem lpi_items[],
     if (replace || (mtrx_nd_num < kMaxNodeARow &&
         matrix_[res_row].mtrx_nd_pos + mtrx_nd_num < kMtrxNdPoolSize)) {
       mtrx_nd_res->id = lpi_items[pos].id;
-      printf("1576: %ld\n", mtrx_nd_res->id);
+
+      if (kPrintDebug0)
+        printf("1576: %ld\n", mtrx_nd_res->id);
+
       mtrx_nd_res->score = score;
       mtrx_nd_res->from = mtrx_nd;
       mtrx_nd_res->dmi_fr = dmi_fr;
