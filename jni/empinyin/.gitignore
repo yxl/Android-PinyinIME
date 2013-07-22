@@ -1,0 +1,5 @@
+data/
+empinyin_files.data
+empinyin_files.js
+libpinyin.js
+*.sw*
