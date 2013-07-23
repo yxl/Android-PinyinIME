@@ -1,0 +1,4 @@
+Steps to port Android Pinyin IME to javascript:
+  - Edit build.sh, set your own EMSCRIPTEN_HOME
+  - Run build.sh
+  - Open test.html in Firefox
