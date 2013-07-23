@@ -8,6 +8,10 @@
     };
   }
 
+  if (typeof Module['canvas'] == 'undefined') {
+    Module['canvas'] = document.getElementById('canvas');
+  }
+
   function getLoggerTime() {
     var date = new Date();
     return date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() + ":" + date.getMilliseconds();
