@@ -42,7 +42,8 @@ void
 testMatrixSearch(const char* py) {
   MatrixSearch ms;
   ms.init("../../res/raw/dict_pinyin.png", "user.dic");
-  for (int i = 0; i < 1; i++) {
+  time_t start = time(NULL);
+  for (int i = 0; i < 1000000; i++) {
     ms.reset_search();
     ms.search(py, strlen(py));
 
@@ -52,27 +53,29 @@ testMatrixSearch(const char* py) {
 
     size_t n = ms.get_candidate_num();
 
-    printf("\n");
-    for (size_t i = 0; i < n; i++) {
-      if (i % 10 == 0) {
-        printf("\n");
-      }
-      ms.get_candidate(i, buffer, 64);
-      printf("%s ", toUTF8(buffer, 64));
-    }
-    printf("\n%ld candidate(s) for %s\n", n, py);
+    // printf("\n");
+    // for (size_t i = 0; i < n; i++) {
+    //   if (i % 10 == 0) {
+    //     printf("\n");
+    //   }
+    //   ms.get_candidate(i, buffer, 64);
+    //   printf("%s ", toUTF8(buffer, 64));
+    // }
+    // printf("\n%ld candidate(s) for %s\n", n, py);
 
-    char16 predict_buf[100][kMaxPredictSize + 1];
-    ms.get_candidate0(buffer, 64, NULL, false);
-    n = ms.get_predicts(buffer, predict_buf, 100);
-    printf("\n%ld prediction word(s) for %s\n", n, toUTF8(buffer, 64));
-    for (size_t i = 0; i < n; i++) {
-      if (i % 10 == 0) {
-        printf("\n");
-      }
-      printf("%s ", toUTF8(predict_buf[i], kMaxPredictSize + 1));
-    }
+    // char16 predict_buf[100][kMaxPredictSize + 1];
+    // ms.get_candidate0(buffer, 64, NULL, false);
+    // n = ms.get_predicts(buffer, predict_buf, 100)start;
+    // printf("\n%ld prediction word(s) for %s\n", n, toUTF8(buffer, 64));
+    // for (size_t i = 0; i < n; i++) {
+    //   if (i % 10 == 0) {
+    //     printf("\n");
+    //   }
+    //   printf("%s ", toUTF8(predict_buf[i], kMaxPredictSize + 1));
+    // }
   }
+  time_t end = time(NULL);
+  printf("cost %ds\n", end - start);
 }
 
 /**
