@@ -43,25 +43,23 @@
       log('Failed to open data/dict.data!');
     }
 
-    document.getElementById('test_nia').onclick = function() {
-      test('nia');
+    document.getElementById('test').onclick = function() {
+      test(document.getElementById('pinyin').value);
     };
 
-    document.getElementById('test_aig').onclick = function() {
-      test('aig');
-    };
-
-    document.getElementById('test_qua').onclick = function() {
-      test('qua');
-    };
-
-    function test(keyword) {
+    window.test = function (keyword) {
       try {
-        im_reset_search();
 
         log('search keyword ' + keyword);
+
         var startTime = new Date().getTime();
-        var size = im_search(keyword, keyword.length);
+        var size = 0;
+
+        for (var i = 0; i < 1; i++) {
+          im_reset_search();
+          size = im_search(keyword, keyword.length);
+        }
+
         var endTime = new Date().getTime();
 
         log('got ' + size + ' candidates, cost ' + (endTime - startTime) + ' milliseconds.');
