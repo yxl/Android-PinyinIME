@@ -42,8 +42,8 @@ void
 testMatrixSearch(const char* py) {
   MatrixSearch ms;
   ms.init("../../res/raw/dict_pinyin.png", "user.dic");
-  time_t start = time(NULL);
-  for (int i = 0; i < 1000000; i++) {
+  clock_t start = clock();
+  for (int i = 0; i < 10000; i++) {
     ms.reset_search();
     ms.search(py, strlen(py));
 
@@ -74,8 +74,9 @@ testMatrixSearch(const char* py) {
     //   printf("%s ", toUTF8(predict_buf[i], kMaxPredictSize + 1));
     // }
   }
-  time_t end = time(NULL);
-  printf("cost %ds\n", end - start);
+  clock_t end = clock();
+  float diff = (((float)end - (float)start) / CLOCKS_PER_SEC ) * 1000;
+  printf("cost %fms\n", diff);
 }
 
 /**
