@@ -43,19 +43,35 @@
       log('Failed to open data/dict.data!');
     }
 
+    var keywords = [];
     document.getElementById('test').onclick = function() {
-      test(document.getElementById('pinyin').value);
+      currentIdx = 0;
+      keywords = document.getElementById('pinyin').value.trim().split(' ');
+      testNextKeyword();
     };
+
+    var TIMES = 100;
+
+    function testNextKeyword() {
+      window.setTimeout(function() {
+        var keyword = keywords.shift();
+        if (!keyword) {
+          return;
+        }
+        test(keyword);
+        testNextKeyword();
+      }, 1000);
+    }
 
     window.test = function (keyword) {
       try {
 
-        log('search keyword ' + keyword);
+        log('search ' + TIMES + ' times keyword "' + keyword + '"');
 
         var startTime = new Date().getTime();
         var size = 0;
 
-        for (var i = 0; i < 1; i++) {
+        for (var i = 0; i < TIMES; i++) {
           im_reset_search();
           size = im_search(keyword, keyword.length);
         }
@@ -64,11 +80,11 @@
 
         log('got ' + size + ' candidates, cost ' + (endTime - startTime) + ' milliseconds.');
 
-        var candidates = '';
-        for (var i = 0; i < size; i++) {
-          candidates += im_get_candidate_char(i) + ' ';
-        }
-        log('Candidates: ' + candidates);
+       //  var candidates = '';
+       //  for (var i = 0; i < size; i++) {
+       //    candidates += im_get_candidate_char(i) + ' ';
+       //  }
+       //  log('Candidates: ' + candidates);
       } catch (e) {
         log('error: ' + e);
       }
