@@ -379,6 +379,8 @@ class MatrixSearch {
           mtrx_nd->step, mtrx_nd->dmi_fr);
     }
   }
+
+  void QsortLmaPsbItemByPsb(LmaPsbItem* lma_buf, size_t num);
  public:
   MatrixSearch();
   ~MatrixSearch();
