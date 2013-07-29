@@ -23,6 +23,7 @@
 #include "../include/mystdlib.h"
 #include "../include/ngram.h"
 #include "../include/userdict.h"
+#include <algorithm>
 
 namespace ime_pinyin {
 
@@ -1391,6 +1392,26 @@ void MatrixSearch::get_spl_start_id() {
   return;
 }
 
+void MatrixSearch::QsortLmaPsbItemByPsb(LmaPsbItem* lma_buf, size_t num) {
+  uint32 *psbWithIndex = new uint32[num];
+  for (size_t pos = 0; pos < num; pos++) {
+    psbWithIndex[pos] = (((uint32)lma_buf[num].psb) << 16) + pos;
+  }
+
+  std::sort(psbWithIndex, psbWithIndex + num);
+
+  LmaPsbItem* lma_buf_copy = new LmaPsbItem[num];
+  memcpy(lma_buf_copy, lma_buf, sizeof(LmaPsbItem) * num);
+
+  for (size_t index = 0; index < num; index++) {
+    size_t sortedIndex = psbWithIndex[index] & 0xFFFF;
+    lma_buf[index] = lma_buf_copy[sortedIndex];
+  }
+
+  delete[] psbWithIndex;
+  delete[] lma_buf_copy;
+}
+
 size_t MatrixSearch::get_spl_start(const uint16 *&spl_start) {
   get_spl_start_id();
   spl_start = spl_start_;
@@ -1492,7 +1513,7 @@ size_t MatrixSearch::extend_dmi(DictExtPara *dep, DictMatchInfo *dmi_s) {
       printf("--- lpi_total_ = %ld\n", lpi_total_);
     }
 
-    myqsort(lpi_items_, lpi_total_, sizeof(LmaPsbItem), cmp_lpi_with_psb);
+    QsortLmaPsbItemByPsb(lpi_items_, lpi_total_);
     if (NULL == dmi_s && spl_trie_->is_half_id(splid))
       lpi_total_ = lpi_cache.put_cache(splid, lpi_items_, lpi_total_);
   } else {
@@ -1781,8 +1802,9 @@ size_t MatrixSearch::get_lpis(const uint16* splid_str, size_t splid_str_len,
   }
 
   if (sort_by_psb) {
-    myqsort(lma_buf, num, sizeof(LmaPsbItem), cmp_lpi_with_psb);
+    QsortLmaPsbItemByPsb(lma_buf, num);
   }
+
   return num;
 }
 
