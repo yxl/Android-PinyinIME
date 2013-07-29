@@ -66,12 +66,13 @@
     window.test = function (keyword) {
       try {
 
-        log('search ' + TIMES + ' times keyword "' + keyword + '"');
+        var times = parseInt(document.getElementById('times').value);
+        log('search ' + times + ' times keyword "' + keyword + '"');
 
         var startTime = new Date().getTime();
         var size = 0;
 
-        for (var i = 0; i < TIMES; i++) {
+        for (var i = 0; i < times; i++) {
           im_reset_search();
           size = im_search(keyword, keyword.length);
         }
