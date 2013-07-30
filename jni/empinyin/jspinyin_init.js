@@ -50,6 +50,10 @@
       testNextKeyword();
     };
 
+    document.getElementById('getCandidates').onclick = function() {
+      printCandidates(document.getElementById('pinyin').value.trim());
+    };
+
     var TIMES = 100;
 
     function testNextKeyword() {
@@ -60,7 +64,18 @@
         }
         test(keyword);
         testNextKeyword();
-      }, 1000);
+      }, 0);
+    }
+
+    function printCandidates(keyword) {
+      im_reset_search();
+      var size = im_search(keyword, keyword.length);
+
+      var candidates = '';
+      for (var i = 0; i < size; i++) {
+        candidates += im_get_candidate_char(i) + ' ';
+      }
+      log('Candidates: ' + candidates);
     }
 
     window.test = function (keyword) {
@@ -80,12 +95,6 @@
         var endTime = new Date().getTime();
 
         log('got ' + size + ' candidates, cost ' + (endTime - startTime) + ' milliseconds.');
-
-       //  var candidates = '';
-       //  for (var i = 0; i < size; i++) {
-       //    candidates += im_get_candidate_char(i) + ' ';
-       //  }
-       //  log('Candidates: ' + candidates);
       } catch (e) {
         log('error: ' + e);
       }
