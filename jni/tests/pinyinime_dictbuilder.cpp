@@ -27,7 +27,7 @@
 using namespace ime_pinyin;
 
 UTF8 g_utf8_buf[1024] = { 0 };
-bool g_show_detail = false;
+bool g_show_detail = true;
 
 const char*
 toUTF8(const char16* src, size_t length) {
@@ -91,6 +91,9 @@ main(int argc, char* argv[]) {
   char py[256] = "nia";
   if (argc > 1) {
     strncpy(py, argv[1], 256);
+  }
+  if (argc > 2) {
+    g_show_detail = false;
   }
   testMatrixSearch(py);
   return 0;
