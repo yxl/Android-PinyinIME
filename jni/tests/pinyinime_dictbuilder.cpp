@@ -27,6 +27,7 @@
 using namespace ime_pinyin;
 
 UTF8 g_utf8_buf[1024] = { 0 };
+bool g_show_detail = false;
 
 const char*
 toUTF8(const char16* src, size_t length) {
@@ -42,39 +43,41 @@ void
 testMatrixSearch(const char* py) {
   MatrixSearch ms;
   ms.init("../../res/raw/dict_pinyin.png", "user.dic");
+  size_t py_len = strlen(py);
   clock_t start = clock();
   for (int i = 0; i < 10000; i++) {
     ms.reset_search();
-    ms.search(py, strlen(py));
-
+    ms.search(py, py_len);
+  }
+  clock_t end = clock();
+  if (g_show_detail) {
     char16 buffer[64];
 
     ms.get_candidate0(buffer, 64, NULL, false);
 
     size_t n = ms.get_candidate_num();
 
-    // printf("\n");
-    // for (size_t i = 0; i < n; i++) {
-    //   if (i % 10 == 0) {
-    //     printf("\n");
-    //   }
-    //   ms.get_candidate(i, buffer, 64);
-    //   printf("%s ", toUTF8(buffer, 64));
-    // }
-    // printf("\n%ld candidate(s) for %s\n", n, py);
+    printf("\n");
+    for (size_t i = 0; i < n; i++) {
+      if (i % 10 == 0) {
+        printf("\n");
+      }
+      ms.get_candidate(i, buffer, 64);
+      printf("%s ", toUTF8(buffer, 64));
+    }
+    printf("\n%ld candidate(s) for %s\n", n, py);
 
-    // char16 predict_buf[100][kMaxPredictSize + 1];
-    // ms.get_candidate0(buffer, 64, NULL, false);
-    // n = ms.get_predicts(buffer, predict_buf, 100)start;
-    // printf("\n%ld prediction word(s) for %s\n", n, toUTF8(buffer, 64));
-    // for (size_t i = 0; i < n; i++) {
-    //   if (i % 10 == 0) {
-    //     printf("\n");
-    //   }
-    //   printf("%s ", toUTF8(predict_buf[i], kMaxPredictSize + 1));
-    // }
+    char16 predict_buf[100][kMaxPredictSize + 1];
+    ms.get_candidate0(buffer, 64, NULL, false);
+    n = ms.get_predicts(buffer, predict_buf, 100);
+    printf("\n%ld prediction word(s) for %s\n", n, toUTF8(buffer, 64));
+    for (size_t i = 0; i < n; i++) {
+      if (i % 10 == 0) {
+        printf("\n");
+      }
+      printf("%s ", toUTF8(predict_buf[i], kMaxPredictSize + 1));
+    }
   }
-  clock_t end = clock();
   float diff = (((float)end - (float)start) / CLOCKS_PER_SEC ) * 1000;
   printf("cost %fms\n", diff);
 }
