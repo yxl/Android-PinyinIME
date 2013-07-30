@@ -381,6 +381,7 @@ class MatrixSearch {
   }
 
   void QsortLmaPsbItemByPsb(LmaPsbItem* lma_buf, size_t num);
+  void QsortLmaPsbItemByHanzi(LmaPsbItem* lma_buf, size_t num);
  public:
   MatrixSearch();
   ~MatrixSearch();
