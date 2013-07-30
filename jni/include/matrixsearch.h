@@ -372,6 +372,7 @@ class MatrixSearch {
   void debug_print_dmi(PoolPosType dmi_pos, uint16 nest_level);
 
   void QsortLmaPsbItemByPsb(LmaPsbItem* lma_buf, size_t num);
+  void QsortLmaPsbItemByHanzi(LmaPsbItem* lma_buf, size_t num);
  public:
   MatrixSearch();
   ~MatrixSearch();

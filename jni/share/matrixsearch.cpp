@@ -1412,6 +1412,26 @@ void MatrixSearch::QsortLmaPsbItemByPsb(LmaPsbItem* lma_buf, size_t num) {
   delete[] lma_buf_copy;
 }
 
+void MatrixSearch::QsortLmaPsbItemByHanzi(LmaPsbItem* lma_buf, size_t num) {
+  uint32 *psbWithIndex = new uint32[num];
+  for (size_t pos = 0; pos < num; pos++) {
+    psbWithIndex[pos] = (((uint32)lma_buf[pos].hanzi) << 16) + pos;
+  }
+
+  std::sort(psbWithIndex, psbWithIndex + num);
+
+  LmaPsbItem* lma_buf_copy = new LmaPsbItem[num];
+  memcpy(lma_buf_copy, lma_buf, sizeof(LmaPsbItem) * num);
+
+  for (size_t index = 0; index < num; index++) {
+    size_t sortedIndex = psbWithIndex[index] & 0xFFFF;
+    lma_buf[index] = lma_buf_copy[sortedIndex];
+  }
+
+  delete[] psbWithIndex;
+  delete[] lma_buf_copy;
+}
+
 size_t MatrixSearch::get_spl_start(const uint16 *&spl_start) {
   get_spl_start_id();
   spl_start = spl_start_;
@@ -1757,7 +1777,7 @@ size_t MatrixSearch::get_lpis(const uint16* splid_str, size_t splid_str_len,
       lma_buf[pos].hanzi = hanzis[0];
     }
 
-    myqsort(lma_buf, num, sizeof(LmaPsbItem), cmp_lpi_with_hanzi);
+    QsortLmaPsbItemByHanzi(lma_buf, num);
 
     size_t remain_num = 0;
     for (size_t pos = 0; pos < num; pos++) {
