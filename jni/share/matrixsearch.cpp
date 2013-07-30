@@ -1413,22 +1413,22 @@ void MatrixSearch::QsortLmaPsbItemByPsb(LmaPsbItem* lma_buf, size_t num) {
 }
 
 void MatrixSearch::QsortLmaPsbItemByHanzi(LmaPsbItem* lma_buf, size_t num) {
-  uint32 *psbWithIndex = new uint32[num];
+  uint32 *hanziWithIndex = new uint32[num];
   for (size_t pos = 0; pos < num; pos++) {
-    psbWithIndex[pos] = (((uint32)lma_buf[pos].hanzi) << 16) + pos;
+    hanziWithIndex[pos] = (((uint32)lma_buf[pos].hanzi) << 16) + pos;
   }
 
-  std::sort(psbWithIndex, psbWithIndex + num);
+  std::sort(hanziWithIndex, hanziWithIndex + num);
 
   LmaPsbItem* lma_buf_copy = new LmaPsbItem[num];
   memcpy(lma_buf_copy, lma_buf, sizeof(LmaPsbItem) * num);
 
   for (size_t index = 0; index < num; index++) {
-    size_t sortedIndex = psbWithIndex[index] & 0xFFFF;
+    size_t sortedIndex = hanziWithIndex[index] & 0xFFFF;
     lma_buf[index] = lma_buf_copy[sortedIndex];
   }
 
-  delete[] psbWithIndex;
+  delete[] hanziWithIndex;
   delete[] lma_buf_copy;
 }
 
