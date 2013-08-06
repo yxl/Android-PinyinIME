@@ -23,7 +23,6 @@
 #include "../include/mystdlib.h"
 #include "../include/ngram.h"
 #include "../include/userdict.h"
-#include <algorithm>
 
 namespace ime_pinyin {
 
@@ -1392,19 +1391,23 @@ void MatrixSearch::get_spl_start_id() {
   return;
 }
 
+int compare(const void* a, const void* b) {
+  return *(int *)a - *(int *)b;
+}
+
 void MatrixSearch::QsortLmaPsbItemByPsb(LmaPsbItem* lma_buf, size_t num) {
-  uint32 *psbWithIndex = new uint32[num];
+  int *psbWithIndex = new int[num];
   for (size_t pos = 0; pos < num; pos++) {
-    psbWithIndex[pos] = (((uint32)lma_buf[pos].psb) << 16) + pos;
+    psbWithIndex[pos] = (((int) lma_buf[pos].psb) << 15) | pos;
   }
 
-  std::sort(psbWithIndex, psbWithIndex + num);
+  qsort(psbWithIndex, num, sizeof(int), compare);
 
   LmaPsbItem* lma_buf_copy = new LmaPsbItem[num];
   memcpy(lma_buf_copy, lma_buf, sizeof(LmaPsbItem) * num);
 
   for (size_t index = 0; index < num; index++) {
-    size_t sortedIndex = psbWithIndex[index] & 0xFFFF;
+    size_t sortedIndex = psbWithIndex[index] & 0x7FFF;
     lma_buf[index] = lma_buf_copy[sortedIndex];
   }
 
@@ -1413,18 +1416,18 @@ void MatrixSearch::QsortLmaPsbItemByPsb(LmaPsbItem* lma_buf, size_t num) {
 }
 
 void MatrixSearch::QsortLmaPsbItemByHanzi(LmaPsbItem* lma_buf, size_t num) {
-  uint32 *hanziWithIndex = new uint32[num];
+  int *hanziWithIndex = new int[num];
   for (size_t pos = 0; pos < num; pos++) {
-    hanziWithIndex[pos] = (((uint32)lma_buf[pos].hanzi) << 16) + pos;
+    hanziWithIndex[pos] = (((int)lma_buf[pos].hanzi) << 15) + pos;
   }
 
-  std::sort(hanziWithIndex, hanziWithIndex + num);
+  qsort(hanziWithIndex, num, sizeof(int), compare);
 
   LmaPsbItem* lma_buf_copy = new LmaPsbItem[num];
   memcpy(lma_buf_copy, lma_buf, sizeof(LmaPsbItem) * num);
 
   for (size_t index = 0; index < num; index++) {
-    size_t sortedIndex = hanziWithIndex[index] & 0xFFFF;
+    size_t sortedIndex = hanziWithIndex[index] & 0x7FFF;
     lma_buf[index] = lma_buf_copy[sortedIndex];
   }
 
