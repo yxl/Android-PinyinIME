@@ -25,18 +25,20 @@ static MatrixSearch* g_pMatrixSearch = NULL;
 
 static const char*
 toUTF8(const char16* src, size_t length) {
-  static UTF8 g_utf8_buf[100] = { 0 };
+  static UTF8 g_utf8_buf[1000] = { 0 };
+  memset(g_utf8_buf, 0, sizeof(g_utf8_buf));
   UTF16 *utf16Start = (UTF16 *) src;
   UTF16 *utf16End = (UTF16 *) (src + length);
   UTF8* utf8Start = g_utf8_buf;
   ConvertUTF16toUTF8((const UTF16 **) &utf16Start, utf16End, &utf8Start,
-      &(g_utf8_buf[100]), strictConversion);
+      &(g_utf8_buf[1000]), strictConversion);
   return (const char*) g_utf8_buf;
 }
 
 static const char16*
 toUTF16(const char* src) {
   static UTF16 g_uf16_buf[100] = { 0 };
+  memset(g_uf16_buf, 0, sizeof(g_uf16_buf));
   const UTF8* utf8Start = (const UTF8 *)src;
   const UTF8* utf8End = (const UTF8 *)(src + strlen(src));
   UTF16* utf16Start = g_uf16_buf;
